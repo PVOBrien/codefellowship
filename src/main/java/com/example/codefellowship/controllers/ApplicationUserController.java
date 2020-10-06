@@ -40,9 +40,9 @@ public class ApplicationUserController {
         return "login";
     }
 
-    @PostMapping("/userinfo")
-    public RedirectView gettingUser(String username) {
-
-        return new RedirectView("/showuserinfo/ + ${username});
-    }
+//    @PostMapping("/userinfo")
+//    public RedirectView gettingUser(String username) {
+//
+//        return new RedirectView("/showuserinfo/ + ${username});
+//    }
 }

@@ -11,5 +11,4 @@ Routes
 
 "/" - homepage.
 "/signup" - goes to a page to signup
-
 "/newuser" - POST map to create a new user with a hashed password, then to be redirected to a user detail page (not yet in place).
