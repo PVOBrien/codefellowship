@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
-    <form  action="/userinfo" method="POST"> <!--  -->
+    <form action="/login" method="Post"> <!--  -->
         User Name<input type="text" name="username">
         Password <input type="password" name="password">  <!-- https://www.w3schools.com/howto/howto_js_toggle_password.asp -->
         Submit <input type="submit">

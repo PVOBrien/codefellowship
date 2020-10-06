@@ -21,18 +21,23 @@ public class ApplicationUser implements UserDetails {
 
     String firstName;
     String lastName;
-    long dateOfBirth;
+//    String dateOfBirth;
     String bio;
 
-    public ApplicationUser(String userName, String password, String firstName, String lastName, String bio){}
+    public ApplicationUser(){}
 
-    public ApplicationUser(String username, String password, String firstName, String lastName, long dateOfBirth, String bio) {
+    public ApplicationUser(String username, String password, String firstName, String lastName, String bio) { // String dateOfBirth,
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
+//        this.dateOfBirth = dateOfBirth;
         this.bio = bio;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     public long getId() { return id; }
@@ -62,10 +67,6 @@ public class ApplicationUser implements UserDetails {
 
     public void setUsername(String username) { this.username = username; }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
@@ -76,8 +77,8 @@ public class ApplicationUser implements UserDetails {
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public long getDateOfBirth() { return dateOfBirth; }
-    public void setDateOfBirth(long dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+//    public String getDateOfBirth() { return dateOfBirth; }
+//    public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
     public String getBio() { return bio; }
     public void setBio(String bio) { this.bio = bio; }
