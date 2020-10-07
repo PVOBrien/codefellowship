@@ -6,9 +6,9 @@
 </head>
 <body>
     <h2>Your Info</h2>
-    <p th:text="${userDeets.firstName}"></p>
-    <p th:text="${userDeets.lastName}"></p>
-    <p th:text="${userDeets.username}"></p>
-    <p th:text="${userDeets.bio}"></p>
+    <p th:text=" 'First Name : ' + ${userDeets.firstName}"></p>
+    <p th:text=" 'Last Name : ' + ${userDeets.lastName}"></p>
+    <p th:text=" 'Username :  ' + ${userDeets.username}"></p>
+    <p th:text=" 'Bio : ' + ${userDeets.bio}"></p>
 </body>
 </html>

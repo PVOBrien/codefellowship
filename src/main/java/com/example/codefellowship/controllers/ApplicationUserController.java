@@ -27,28 +27,26 @@ public class ApplicationUserController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/signup") // initially coming from /signup
-    public RedirectView makeNewUser(String username,
+    public ModelAndView makeNewUser(String username,
                                     String password,
                                     String firstName,
                                     String lastName,
 //                                    String dateOfBirth,
-                                    String bio) { // HttpServletRequest request
+                                    String bio,
+                                    HttpServletRequest request) { //
 
     password = passwordEncoder.encode(password);
 
     ApplicationUser newUser = new ApplicationUser(username, password, firstName, lastName, bio); // dateOfBirth,
 
     applicationUserRepository.save(newUser);
-//    request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
+    request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
 
-    return new RedirectView("/login"); // heads back to the home page
+    return new ModelAndView("redirect:/login"); // now TEMPORARILY redirects login with this content, redirecting straight through /login,
     }
-
+    // ^^^ https://www.baeldung.com/spring-redirect-and-forward ^^^
     @GetMapping("/user")
     public RedirectView sendItBackWithTheDetails(Principal principal) {
-//        System.out.println(principal); // as of now returning null
-//        ApplicationUser thisUser = applicationUserRepository.findByUsername(principal.getName());
-//        m.addAttribute("userDeets", thisUser);
 
         return new RedirectView( "/user/" + principal.getName());
     }
