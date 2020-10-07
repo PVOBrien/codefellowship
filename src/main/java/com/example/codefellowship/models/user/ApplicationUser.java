@@ -22,23 +22,18 @@ public class ApplicationUser implements UserDetails {
 
     String firstName;
     String lastName;
-//    Date dateOfBirth;
+    long dateOfBirth;
     String bio;
 
-    ApplicationUser(){};
+    public ApplicationUser(String userName, String password, String firstName, String lastName, String bio){}
 
-    public ApplicationUser(String username, String password, String firstName, String lastName, String bio) { // , Date dateOfBirth
-        this.username = username; // TODO: figure out how to fully refactor to camelcase
+    public ApplicationUser(String username, String password, String firstName, String lastName, long dateOfBirth, String bio) {
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-//        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth;
         this.bio = bio;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
     }
 
     public long getId() { return id; }
@@ -67,7 +62,13 @@ public class ApplicationUser implements UserDetails {
         return true;
     }
 
-    public void setUsername(String userName) { this.username = userName; }
+    public void setUsername(String username) { this.username = username; }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
 
     @Override
     public String getPassword() { return password; }
@@ -79,8 +80,8 @@ public class ApplicationUser implements UserDetails {
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
 
-//    public Date getDateOfBirth() { return dateOfBirth; }
-//    public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+    public long getDateOfBirth() { return dateOfBirth; }
+    public void setDateOfBirth(long dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
     public String getBio() { return bio; }
     public void setBio(String bio) { this.bio = bio; }

@@ -34,12 +34,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http
                 .cors().disable()
+                // ^ to whitelist pages
                 .csrf().disable()
+                // ^ check for cross site resource forgery
                 .authorizeRequests()
+                // ^ all lines until AND connect...
                 .antMatchers("/").permitAll()
                 .antMatchers("/newuser", "/signup").permitAll() // ALL ROUTES.
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
+                // ^ access granted
+//                .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -48,6 +53,3 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout(); // this then creates a built-in default logout route at /logout.
     }
 }
-
-//                .antMatchers("/gotouserinfo").permitAll() add to .antMatchers for possible testing.
-//                .anyRequest().authenticated() READS: any (OTHER) request must be authenticated.

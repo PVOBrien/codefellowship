@@ -23,12 +23,11 @@ public class ApplicationUserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/newuser") // initially coming from /signup
+    @PostMapping("/newuser")
     public RedirectView makeNewUser(String userName,
                                     String password,
                                     String firstName,
                                     String lastName,
-//                                    Date dateOfBirth,
                                     String bio) {
 
 //        Date sqlDate = new java.sql.Date(dateOfBirth.getTime); TODO: FIX THIS.
@@ -61,4 +60,9 @@ public class ApplicationUserController {
         return "login";
     }
 
+    @PostMapping("/userinfo")
+    public RedirectView gettingUser(String username) {
+
+        return new RedirectView("/showuserinfo/ + ${username}");
+    }
 }
