@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/signup").permitAll()
+                .antMatchers("/newuser", "/signup").permitAll() // ALL ROUTES.
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -51,23 +51,3 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //                .antMatchers("/gotouserinfo").permitAll() add to .antMatchers for possible testing.
 //                .anyRequest().authenticated() READS: any (OTHER) request must be authenticated.
-
-//========= If necessary, swap in below code accordingly.
-
-//    @Override
-//    protected void configure(final HttpSecurity http) throws Exception {
-//        http
-//                .cors().disable()// whitelist pages
-//                .csrf().disable()// cross site resource forgery
-//                .authorizeRequests() // all lines until AND are connected
-//                .antMatchers("/").permitAll() // permit home route
-//                .antMatchers("/newuser", "/login").permitAll() // permit them
-//                .anyRequest().authenticated() // force login
-//                .and()
-//                .formLogin() // settings about login
-//                .loginPage("/login") // login will live on /login // the form must have an action of /login too
-//                // this gets rid of the pretty login
-//                .defaultSuccessUrl("/")
-//                .and()
-//                .logout(); // this creates a get route of /logout
-//    }

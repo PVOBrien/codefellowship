@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 import java.util.Collection;
 
 @Entity
@@ -21,13 +22,13 @@ public class ApplicationUser implements UserDetails {
 
     String firstName;
     String lastName;
-//    String dateOfBirth;
+//    Date dateOfBirth;
     String bio;
 
-    public ApplicationUser(){}
+    ApplicationUser(){};
 
-    public ApplicationUser(String username, String password, String firstName, String lastName, String bio) { // String dateOfBirth,
-        this.username = username;
+    public ApplicationUser(String username, String password, String firstName, String lastName, String bio) { // , Date dateOfBirth
+        this.username = username; // TODO: figure out how to fully refactor to camelcase
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,31 +44,32 @@ public class ApplicationUser implements UserDetails {
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
 
+    @Override
     public String getUsername() { return username; }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
-    public void setUsername(String username) { this.username = username; }
+    public void setUsername(String userName) { this.username = userName; }
 
-
+    @Override
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
@@ -77,8 +79,8 @@ public class ApplicationUser implements UserDetails {
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
 
-//    public String getDateOfBirth() { return dateOfBirth; }
-//    public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+//    public Date getDateOfBirth() { return dateOfBirth; }
+//    public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
     public String getBio() { return bio; }
     public void setBio(String bio) { this.bio = bio; }
