@@ -16,6 +16,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal; // where we get the user deets.
+import java.sql.Date;
+
 
 @Controller
 public class ApplicationUserController {
@@ -31,13 +33,13 @@ public class ApplicationUserController {
                                     String password,
                                     String firstName,
                                     String lastName,
-//                                    String dateOfBirth,
+                                    Date dateOfBirth,
                                     String bio,
                                     HttpServletRequest request) { //
 
     password = passwordEncoder.encode(password);
 
-    ApplicationUser newUser = new ApplicationUser(username, password, firstName, lastName, bio); // dateOfBirth,
+    ApplicationUser newUser = new ApplicationUser(username, password, firstName, lastName, dateOfBirth, bio); // dateOfBirth,
 
     applicationUserRepository.save(newUser);
     request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
@@ -47,6 +49,8 @@ public class ApplicationUserController {
     // ^^^ https://www.baeldung.com/spring-redirect-and-forward ^^^
     @GetMapping("/user")
     public RedirectView sendItBackWithTheDetails(Principal principal) {
+
+        System.out.println(principal);
 
         return new RedirectView( "/user/" + principal.getName());
     }
