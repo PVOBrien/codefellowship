@@ -10,8 +10,8 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/signup")
-    public String getSigned(){
-        return "signup";
-    }
+//    @GetMapping("/signup")
+//    public String getSigned(){
+//        return "signup";
+//    }
 }

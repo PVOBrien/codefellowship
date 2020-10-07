@@ -14,17 +14,16 @@ public class ApplicationUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    public long id;
 
     String username; // is potato
     String password; // is potato
-
     String firstName;
     String lastName;
 //    String dateOfBirth;
     String bio;
 
-    public ApplicationUser(){}
+    public ApplicationUser(){};
 
     public ApplicationUser(String username, String password, String firstName, String lastName, String bio) { // String dateOfBirth,
         this.username = username;
@@ -47,22 +46,22 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setUsername(String username) { this.username = username; }
