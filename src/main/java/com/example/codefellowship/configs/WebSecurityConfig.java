@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // ^ all lines until AND connect...
                 .antMatchers("/").permitAll()
-                .antMatchers("/newuser", "/signup").permitAll() // ALL ROUTES.
+                .antMatchers("/signup").permitAll()
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 // ^ access granted
@@ -53,3 +53,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout(); // this then creates a built-in default logout route at /logout.
     }
 }
+

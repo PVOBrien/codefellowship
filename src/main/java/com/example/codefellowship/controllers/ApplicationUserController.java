@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal; // where we get the user deets.
-import java.sql.Date;
-
 
 @Controller
 public class ApplicationUserController {
@@ -28,18 +26,15 @@ public class ApplicationUserController {
                                     String password,
                                     String firstName,
                                     String lastName,
+<<<<<<< HEAD
+=======
+//                                    String dateOfBirth,
+>>>>>>> parent of 2e4018f... for kicks
                                     String bio) {
-
-//        Date sqlDate = new java.sql.Date(dateOfBirth.getTime); TODO: FIX THIS.
-
-//    dateOfBirth = dateOfBirth.substring(0,10);
-//    java.util.Date dateUtilDate =
 
     password = passwordEncoder.encode(password);
 
-    ApplicationUser newUser = new ApplicationUser(userName, password, firstName, lastName, bio); //  dateOfBirth,
-
-//    ApplicationUser newUser = new ApplicationUser(userName,password,firstName,lastName,dateOfBirth,bio); // THIS IS STRICT. MUST COME IN AS ABOVE AS RedirectView makeNewUserConstructor above.
+    ApplicationUser newUser = new ApplicationUser(userName, password, firstName, lastName, bio); // dateOfBirth,
 
     applicationUserRepository.save(newUser);
 
@@ -49,7 +44,7 @@ public class ApplicationUserController {
     @GetMapping("/gotouserinfo")
     public String sendItBackWithTheDetails(Model m, Principal principal) {
         System.out.println(principal); // as of now returning null
-        ApplicationUser thisUser = applicationUserRepository.findByUsername(principal.getName());
+        ApplicationUser thisUser = applicationUserRepository.findByUsername("PVOVideo");
         m.addAttribute("userDeets", thisUser);
 
         return "user.html";
