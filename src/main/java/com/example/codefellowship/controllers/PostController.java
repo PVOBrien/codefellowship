@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.security.Principal;
+
 @Controller // means it's going to have routes
 public class PostController {
 
@@ -32,4 +34,6 @@ public class PostController {
 
         return new RedirectView("/user/" + user.getId());
     }
+
+
 }

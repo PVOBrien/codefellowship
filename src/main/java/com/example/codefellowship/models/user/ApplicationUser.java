@@ -5,9 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -23,7 +21,7 @@ public class ApplicationUser implements UserDetails {
     Date dateOfBirth;
     String bio;
 
-    public ApplicationUser(){};
+    public ApplicationUser(){}
 
     public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio) {
         this.username = username;
@@ -40,7 +38,20 @@ public class ApplicationUser implements UserDetails {
     }
 
     @OneToMany(mappedBy = "applicationUser", cascade = CascadeType.ALL) // connects this up to the posts...
-    public List<Post> posts = new ArrayList<Post>(); // needs this to store the posts w user, link it all up.
+    public List<Post> posts = new ArrayList<>(); // needs this to store the posts w user, link it all up.
+
+
+    @ManyToMany(cascade = CascadeType.REMOVE) // This one only removes one of the relationship, not both.
+    @JoinTable(
+            name="overwatch", // the name of the table.
+            joinColumns = { @JoinColumn (name="theOneFollowing")},
+            inverseJoinColumns = {@JoinColumn (name="theFollowed")}
+    )
+    public Set<ApplicationUser> theFollowing = new HashSet<>();
+
+    @ManyToMany (mappedBy = "theFollowing") // the "secondary table of the many to many relationship.
+    public Set<ApplicationUser> theFollowed = new HashSet<>();
+
 
     public List<Post> getPosts() { return posts; }
 

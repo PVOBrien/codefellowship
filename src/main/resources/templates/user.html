@@ -17,10 +17,35 @@
     <p th:text=" 'Bio : ' + ${userDeets.bio}"></p>
     <p th:text=" 'Date of Birth ' + ${userDeets.dateOfBirth}"></p>
 
-    <form method="post" action="/savepost">    <!-- HTML Codes by Quackit.com -->
-        <input type="hidden" name="id" th:value="${userDeets.id}">
-        <textarea name="body" cols="30" rows="5" class="html-text-box">Type here</textarea>
-        <p><input type="submit" value="Submit">
+
+        <form action="/following" method="POST">
+            <input type="hidden" name="username" th:value="${userDeets.username}">
+            <label for="following"> <!-- this is attached to the id="" in the nested <select><select -->
+                Who would you like to follow?
+                <select name="theFollowed" id="following"> <!-- attached to the label for="" this is nexted to. -->
+                    <option th:each="abletofollow : ${allusers}" th:value="${abletofollow.username}" th:text="${abletofollow.username}"></option>
+                </select>
+            </label>
+            <input type="submit" value="Follow!">
+        </form>
+
+    <div th:if="${principal.getName()} == ${userDeets.username}"> // anything within ${} is all Java all the time. btw this turns off the posting box if principal isn't the user being viewed.
+        <form method="post" action="/savepost">    <!-- HTML Codes by Quackit.com -->
+            <input type="hidden" name="id" th:value="${userDeets.id}">
+            <textarea name="body" cols="30" rows="5" class="html-text-box">Type here</textarea>
+            <p><input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <form action="/seeotheruser" method="POST">
+        <input type="hidden" name="username" th:value="${userDeets.username}">
+        <label for="following"> <!-- this is attached to the id="" in the nested <select><select -->
+            Would you like to visit someone else's page?
+            <select name="theFollowed" id="following"> <!-- attached to the label for="" this is nexted to. -->
+                <option th:each="abletofollow : ${allusers}" th:value="${abletofollow.username}" th:text="${abletofollow.username}"></option>
+            </select>
+        </label>
+        <input type="submit" value="Visit Other User">
     </form>
 
     <div th:if="${userDeets.getPosts().size() > 0}" th:each="post : ${userDeets.getPosts()}" >
