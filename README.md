@@ -27,14 +27,14 @@ Routes
 - [x] The site should allow users to create an ApplicationUser on the “sign up” page.
 - [x] Your Controller should have an @Autowired private PasswordEncoder passwordEncoder; and use that to run passwordEncoder.encode(password) before saving the password into the new user.
 - [x] The site should have a page which allows viewing the data about a single ApplicationUser, at a route like /users/{id}.
-- [ ] This should include a default profile picture, which is the same for every user, and their basic information.
+- [x] This should include a default profile picture, which is the same for every user, and their basic information.
 - [x] Using the above cheat sheet, add the ability for users to log in to your app.
 - [ ] When a user is logged in, the app should display the user’s username on every page (probably in the heading).
         - Implemented on some routes as fragment, not all currently.
 - [x] Ensure that your homepage, login, and registration routes are accessible to non-logged in users. All other routes should be limited to logged-in users.
 - [ ] The site should be well-styled and attractive.
 - [x] The site should use reusable templates for its information. (At a minimum, it should have one Thymeleaf fragment that is used on multiple pages.)
-   - [x] Not thoroughly, but is implimented.
+   - [x] Not thoroughly, but is implemented.
 - [ ] The site should have a non-whitelabel error handling page that lets the user know, at minimum, the error code and a brief message about what went wrong.
 - [x] Ensure that user registration also logs users into your app automatically.
 - [x] Add a Post entity to your app.
@@ -45,9 +45,9 @@ hint: this is a relationship between two pieces of data
 
 ==== Day Three Tasks
 
-- [ ] Users can’t perform SQL injection or HTML injection with their posts
+- [x] Users can’t perform SQL injection or HTML injection with their posts
 - [x] Allow users to follow others.
-    - [ ] Implimented, but not not visually reinforced atm.
+    - [ ] Implieented, but not visually reinforced atm.
 - [x] Ensure there is some way (like a users index page) that a user can discover other users on the service.
     - [x] Via a dropdown method atm.
     - [ ] Button to be implemented also. Already using some same skill by not rendering the post block if a logged in user is visiting another user's page.    

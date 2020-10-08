@@ -32,7 +32,7 @@ public class PostController {
         user.posts.add(post); // post now added/referenced(?) to the respective user
         applicationUserRepository.save(user); // now saving the updated user w the new deets
 
-        return new RedirectView("/user/" + user.getId());
+        return new RedirectView("/user/" + user.getUsername());
     }
 
 
