@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to my HomePage</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css"/> <!-- This is correct to find the static/... files.-->
 </head>
 <body>
 <h1>HOWDY!</h1>
+
+<div>
+    <h1 th:replace="fragments/username.html :: name"></h1>
+</div>
 
 <a href="/signup">Create Login Here</a>
 <!--<form action="/newuser" method="POST">-->
@@ -16,6 +21,6 @@
 <!--    <input type="submit" value="New User Submit">-->
 <!--</form>-->
 <a href="/login">Login Here!</a>
-<a href="/gotouserinfo">Go Here to See Your Deets</a>
+<a href="/user">Go Here to See Your Deets</a>
 </body>
 </html>
