@@ -18,7 +18,7 @@
     <p th:text=" 'Bio : ' + ${userDeets.bio}"></p>
     <p th:text=" 'Date of Birth ' + ${userDeets.dateOfBirth}"></p>
 
-
+    <div th:if="${principal.getName()} == ${userDeets.username}">
         <form action="/following" method="POST">
             <input type="hidden" name="username" th:value="${userDeets.username}">
             <label for="following"> <!-- this is attached to the id="" in the nested <select><select -->
@@ -29,6 +29,16 @@
             </label>
             <input type="submit" value="Follow!">
         </form>
+    </div>
+
+
+    <div th:if="${principal.getName() != userDeets.username}">
+        <form action="/following" method="POST">
+            <input type="hidden" name="username" th:value="${userDeets.username}">
+            <input type="submit" value="Follow!">
+        </form>
+
+    </div>
 
     <div th:if="${principal.getName()} == ${userDeets.username}"> <!-- anything within ${} is all Java all the time. btw this turns off the posting box if principal isn't the user being viewed. -->
         <form method="post" action="/savepost">    <!-- HTML Codes by Quackit.com -->
