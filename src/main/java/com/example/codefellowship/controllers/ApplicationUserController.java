@@ -47,8 +47,9 @@ public class ApplicationUserController {
     } // ^^^ https://www.baeldung.com/spring-redirect-and-forward ^^^
 
     @GetMapping("/user")
-    public RedirectView sendItBackWithTheDetails(Principal principal) {
+    public RedirectView sendItBackWithTheDetails(Model m, Principal principal) {
 
+        m.addAttribute("principal", principal);
         System.out.println("Straight from user vanilla route" + principal.toString());
         return new RedirectView( "/user/" + principal.getName());
 
@@ -57,11 +58,11 @@ public class ApplicationUserController {
     @GetMapping("/user/{username}")
     public String showUserForReal(Model m, @PathVariable String username, Principal principal){
 
+        m.addAttribute("principal", principal); // must be passed in explicitly.
         ApplicationUser thisUser = applicationUserRepository.findByUsername(principal.getName());
         m.addAttribute("userDeets", thisUser);
 
         return "user";
-
     }
 
     @GetMapping("/login")

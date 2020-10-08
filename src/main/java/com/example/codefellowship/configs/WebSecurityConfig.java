@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/newuser").permitAll()
+                .antMatchers("/css/*").permitAll() // and here for addtl info https://stackoverflow.com/questions/25368535/spring-security-does-not-allow-css-or-js-resources-to-be-loaded
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

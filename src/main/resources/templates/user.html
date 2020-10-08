@@ -5,6 +5,11 @@
     <title>User</title>
 </head>
 <body>
+
+    <div>
+        <h1 th:replace="fragments/username.html :: name"></h1>
+    </div>
+
     <h2>Your Info</h2>
     <p th:text=" 'First Name : ' + ${userDeets.firstName}"></p>
     <p th:text=" 'Last Name : ' + ${userDeets.lastName}"></p>
@@ -23,6 +28,3 @@
     </div>
 </body>
 </html>
-
-<!--th:text=" 'Your Posts' "-->
-<!--th:each="post : ${user.getPosts()}" -->
