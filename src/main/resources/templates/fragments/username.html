@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
+<!--    <h1 th:replace="fragments/username :: name"></h1>-->
+
     <div th:fragment="name">
-        <h3 th:if="${user}" th:text="Hello there + ${user.getFirstName()}"></h3>
+        <h3 th:if="${principal}" th:text=" 'Hello there ' + ${principal.getName()}"></h3>
     </div>
 
 </body>

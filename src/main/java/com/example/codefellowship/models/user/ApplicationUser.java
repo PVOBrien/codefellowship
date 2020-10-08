@@ -84,4 +84,15 @@ public class ApplicationUser implements UserDetails {
 
     public String getBio() { return bio; }
     public void setBio(String bio) { this.bio = bio; }
+
+    @Override
+    public String toString() {
+        return "ApplicationUser{" +
+                "username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", bio='" + bio + '\'' +
+                '}';
+    }
 }

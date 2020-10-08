@@ -40,24 +40,23 @@ public class ApplicationUserController {
     password = passwordEncoder.encode(password);
 
     ApplicationUser newUser = new ApplicationUser(username, password, firstName, lastName, dateOfBirth, bio); // dateOfBirth,
-
     applicationUserRepository.save(newUser);
     request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
 
     return new ModelAndView("redirect:/login"); // now TEMPORARILY redirects login with this content, redirecting straight through /login,
-    }
-    // ^^^ https://www.baeldung.com/spring-redirect-and-forward ^^^
+    } // ^^^ https://www.baeldung.com/spring-redirect-and-forward ^^^
+
     @GetMapping("/user")
     public RedirectView sendItBackWithTheDetails(Principal principal) {
 
-        System.out.println(principal);
-
+        System.out.println("Straight from user vanilla route" + principal.toString());
         return new RedirectView( "/user/" + principal.getName());
+
     }
 
     @GetMapping("/user/{username}")
     public String showUserForReal(Model m, @PathVariable String username, Principal principal){
-        System.out.println(principal); // as of now returning null
+
         ApplicationUser thisUser = applicationUserRepository.findByUsername(principal.getName());
         m.addAttribute("userDeets", thisUser);
 
