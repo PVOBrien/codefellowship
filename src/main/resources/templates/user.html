@@ -60,7 +60,7 @@
     </form>
 
     <div th:if="${userDeets.getPosts().size() > 0}" th:each="post : ${userDeets.getPosts()}" >
-        <p th:text="${post.getBody()}"></p>
+        <p th:text="${post.getBody()} + ' at ' + ${post.getCreatedAt()}"></p>
     </div>
 
     <form th:action="@{/logout}" method="post">

@@ -30,7 +30,6 @@ Routes
 - [x] This should include a default profile picture, which is the same for every user, and their basic information.
 - [x] Using the above cheat sheet, add the ability for users to log in to your app.
 - [x] When a user is logged in, the app should display the user’s username on every page (probably in the heading).
-        - Implemented on some routes as fragment, not all currently.
 - [x] Ensure that your homepage, login, and registration routes are accessible to non-logged in users. All other routes should be limited to logged-in users.
 - [ ] The site should be well-styled and attractive.
 - [x] The site should use reusable templates for its information. (At a minimum, it should have one Thymeleaf fragment that is used on multiple pages.)
@@ -47,10 +46,9 @@ hint: this is a relationship between two pieces of data
 
 - [x] Users can’t perform SQL injection or HTML injection with their posts
 - [x] Allow users to follow others.
-    - [ ] Implieented, but not visually reinforced atm.
-- [x] Ensure there is some way (like a users index page) that a user can discover other users on the service.
+    - [ ] Implemented, but not visually reinforced atm.
+- [x] Ensure there is some way (like a user's index page) that a user can discover other users on the service.
     - [x] Via a dropdown method atm.
-    - [ ] Button to be implemented also. Already using some same skill by not rendering the post block if a logged in user is visiting another user's page.    
+    - [x] Button to be implemented. Already using some same skill by not rendering the post block if a logged in user is visiting another user's page.    
 - [x] On a user profile page that does NOT belong to the currently logged-in user, display a “Follow” button. When a user clicks that follow button, the logged-in user is now following the viewed-profile-page user.
-    - [ ] See above.
-- [ ] A user can visit a url (like /feed) to view all of the posts from the users that they follow.
+- [ ] A user can visit an url (like /feed) to view all of the posts from the users that they follow.
