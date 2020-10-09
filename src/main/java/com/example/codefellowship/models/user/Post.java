@@ -19,15 +19,16 @@ public class Post { // This is the name of the database.
     @ManyToOne // there'll be many POSTS to one USER.
 
     private ApplicationUser applicationUser; // might not be important?
-
+    private String firstName;
     private String body; // where the post will reside.
 
     Timestamp createdAt = new Timestamp(System.currentTimeMillis()); // Timestamp of .sql type. Uses the System.current... to get it)
 
     public Post(){} // for Spring boot reasons. why? *why*?? BECAUSE.
 
-    public Post(String body){
+    public Post(String body, String firstName){
         this.body = body;
+        this.firstName = firstName;
         this.createdAt = new Timestamp(System.currentTimeMillis()); // TODO: yeah?
 //        this.applicationUser = applicationUser; // TODO: we grab this someplace else?
     }
@@ -46,4 +47,11 @@ public class Post { // This is the name of the database.
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 }

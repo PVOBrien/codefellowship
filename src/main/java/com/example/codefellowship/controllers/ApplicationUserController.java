@@ -2,6 +2,7 @@ package com.example.codefellowship.controllers;
 
 import com.example.codefellowship.models.user.ApplicationUser;
 import com.example.codefellowship.models.user.ApplicationUserRepository;
+import com.example.codefellowship.models.user.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -60,31 +61,19 @@ public class ApplicationUserController {
     public RedirectView seethem(Model m, Principal principal, String theFollowed) {
         ApplicationUser personToSee = applicationUserRepository.findByUsername((theFollowed));
 
-//        m.addAttribute("userDeets", personToSee);
-//        m.addAttribute("principal",principal);
-
-
-
         return new RedirectView("/user/" + personToSee.getUsername() );
     }
 
     @GetMapping("/user/{username}")
     public String showUserForReal(Model m, @PathVariable String username, Principal principal){
 
-
         List<ApplicationUser> allUsers = applicationUserRepository.findAll(); // how to pass in something from a database to a list and on to the model.
         m.addAttribute("allusers", allUsers); // the one in quotes, is what it's called on the otherside. the var name is what is being passed in as a value to that key.
 
-//        ApplicationUser otherUser = applicationUserRepository.findByUsername(username);
         m.addAttribute("principal", principal); // must be passed in explicitly.
 
-//        if (username != null) {
-//            m.addAttribute("userDeets", otherUser);
-//        } else {
         ApplicationUser thisUser = applicationUserRepository.findByUsername(username);
         m.addAttribute("userDeets", thisUser);
-
-//        }
 
         return "user";
     }
@@ -95,8 +84,11 @@ public class ApplicationUserController {
         ApplicationUser following = applicationUserRepository.findByUsername(principal.getName());
         ApplicationUser followed = applicationUserRepository.findByUsername(theFollowed);
 
-        following.theFollowed.add(followed);
-        followed.theFollowing.add(following);
+        following.theFollowing.add(followed);
+        followed.theFollowed.add(following);
+
+//        following.theFollowed.add(followed);
+//        followed.theFollowing.add(following);
 
         applicationUserRepository.save(following);
         applicationUserRepository.save(followed);
@@ -107,7 +99,26 @@ public class ApplicationUserController {
 
     }
 
-//    @GetMapping("/otheruser")
+    @GetMapping("/feed")
+    public String feed(Model m, Principal principal) {
+
+        ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
+        ArrayList<Long> idOfFollowed = new ArrayList<>();
+        for (int i = 0; i < user.theFollowing.size(); i++) {
+            idOfFollowed.add(user.theFollowing.get(i).getId());
+        }
+        ArrayList<Post> postsOfFollowed = new ArrayList<>();
+        for (int i = 0; i < idOfFollowed.size(); i++) {
+            ApplicationUser temp = applicationUserRepository.getOne(idOfFollowed.get(i));
+            for (int j = 0; j < temp.posts.size(); j++) {
+                postsOfFollowed.add(temp.posts.get(j));
+            }
+        }
+        System.out.println(postsOfFollowed);
+        m.addAttribute("postCollection", postsOfFollowed);
+
+        return "feed";
+    }
 
     @GetMapping("/login")
     public String login() {

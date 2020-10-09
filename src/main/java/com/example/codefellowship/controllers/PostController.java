@@ -22,9 +22,9 @@ public class PostController {
     PostRepository postRepository; // all done did up.
 
     @PostMapping("/savepost")
-    public RedirectView makeNewPost(String body, long id){
+    public RedirectView makeNewPost(String body, long id, String firstName){
         ApplicationUser user = applicationUserRepository.getOne(id);
-        Post post = new Post(body);
+        Post post = new Post(body, firstName);
         post.setApplicationUser(user);
             // ^^ this is all saving the vars in places
 

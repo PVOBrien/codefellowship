@@ -14,10 +14,10 @@ public class ApplicationUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
 
-    String username; // is potato
+    private String username; // is potato
     String password; // is potato
-    String firstName;
-    String lastName;
+    public String firstname;
+    private String lastName;
     Date dateOfBirth;
     String bio;
 
@@ -26,7 +26,7 @@ public class ApplicationUser implements UserDetails {
     public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
+        this.firstname = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
@@ -47,14 +47,13 @@ public class ApplicationUser implements UserDetails {
             joinColumns = { @JoinColumn (name="theOneFollowing")},
             inverseJoinColumns = {@JoinColumn (name="theFollowed")}
     )
-    public Set<ApplicationUser> theFollowing = new HashSet<>();
+    public List<ApplicationUser> theFollowing = new ArrayList<>();
 
     @ManyToMany (mappedBy = "theFollowing") // the "secondary table of the many to many relationship.
-    public Set<ApplicationUser> theFollowed = new HashSet<>();
+    public List<ApplicationUser> theFollowed = new ArrayList<>();
 
 
     public List<Post> getPosts() { return posts; }
-
     public void setPost(List<Post> post) { this.posts = post; }
 
     public long getId() { return id; }
@@ -84,8 +83,8 @@ public class ApplicationUser implements UserDetails {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public String getFirstName() { return firstname; }
+    public void setFirstName(String firstName) { this.firstname = firstName; }
 
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
@@ -100,7 +99,7 @@ public class ApplicationUser implements UserDetails {
     public String toString() {
         return "ApplicationUser{" +
                 "username='" + username + '\'' +
-                ", firstName='" + firstName + '\'' +
+                ", firstName='" + firstname + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", bio='" + bio + '\'' +
