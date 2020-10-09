@@ -13,11 +13,16 @@
 
 Can also be run within intelliJ.
 
-Routes
+## Application Features
 
-"/" - homepage.
-"/signup" - goes to a page to signup
-"/newuser" - POST map to create a new user with a hashed password, then to be redirected to a user detail page (not yet in place).
+- A home page upon arrival at "/" where a user can sign up or login.
+- The "/signup" route creates a database entry (with a hashed password via Bcrypt hashing and a unique ID) and then sends them to the "/login" route so that...
+- On the "/login" route a user can login, at which point the following routes are available:
+    - "/user" Where they go to upon successful connection. Here a user can see their user account details
+    - "/post" The post button allows them to type in the above box to leave a message.
+    - "/follow" a user can select a fellow user from the dropdown and choose another user to follow.
+    - "/feed" The "See Feed" button goes to a feed of all of their followed user's posts.
+    - "/seeotheruser" Allows a user to choose another user and go to their user details. On this route, the page also has a dedicated "/follow" route specific to that user's page. 
 
 ## Feature Task (Comprehensive
 
@@ -51,4 +56,4 @@ hint: this is a relationship between two pieces of data
     - [x] Via a dropdown method atm.
     - [x] Button to be implemented. Already using some same skill by not rendering the post block if a logged in user is visiting another user's page.    
 - [x] On a user profile page that does NOT belong to the currently logged-in user, display a “Follow” button. When a user clicks that follow button, the logged-in user is now following the viewed-profile-page user.
-- [ ] A user can visit an url (like /feed) to view all of the posts from the users that they follow.
+- [x] A user can visit an url (like /feed) to view all of the posts from the users that they follow.
