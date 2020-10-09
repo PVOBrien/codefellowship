@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Feed</title>
+</head>
+<body>
+
+    <p>Connecting to your peeps</p>
+
+    <div th:each="post : ${postCollection}">
+        <p th:text="${post.body} + ' From: ' + ${post.firstName}"></p>
+        <a th:href="'/user/' + ${post.applicationUser.getId()}" th:text="'Go to ' + ${post.firstName} + '\'s profile page.' "></a> <!-- TODO if something breaks, here's a place to look! -->
+    </div>
+
+</body>
+</html>

@@ -8,19 +8,16 @@
 <body>
 <h1>HOWDY!</h1>
 
-<div>
-    <h1 th:replace="fragments/username.html :: name"></h1>
-</div>
+    <div>
+        <h1 th:replace="fragments/username.html :: name"></h1>
+    </div>
+    <div th:unless="${principal}"> <!--https://attacomsian.com/blog/thymeleaf-conditions-->
+        <a href="/login">Login Here!</a>
+        <a href="/signup">Create Login Here</a>
+    </div>
 
-<a href="/signup">Create Login Here</a>
-<!--<form action="/newuser" method="POST">-->
-<!--    Username: <input type="text" name="userName">-->
-<!--    First name: <input type="text" name="firstName">-->
-<!--    Last name: <input type="text" name="lastName">-->
-<!--    Date of Birth: <input type="date">-->
-<!--    <input type="submit" value="New User Submit">-->
-<!--</form>-->
-<a href="/login">Login Here!</a>
-<a href="/user">Go Here to See Your Deets</a>
+    <div th:if="${principal}">
+        <a href="/user">Go Here to See Your Deets</a>
+    </div>
 </body>
 </html>
