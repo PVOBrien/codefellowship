@@ -3,6 +3,7 @@ package com.example.codefellowship.controllers;
 import com.example.codefellowship.models.user.ApplicationUser;
 import com.example.codefellowship.models.user.ApplicationUserRepository;
 import com.example.codefellowship.models.user.Post;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,6 +25,7 @@ import java.util.List;
 
 @Controller
 public class ApplicationUserController {
+
 
     @Autowired
     ApplicationUserRepository applicationUserRepository;
