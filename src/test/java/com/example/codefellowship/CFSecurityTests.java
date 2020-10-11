@@ -15,14 +15,15 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+//@SpringBootTest
+//@AutoConfigureMockMvc
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SecurityConfig.class)
 @WebAppConfiguration
 public class CFSecurityTests {
 
     // https://docs.spring.io/spring-security/site/docs/current/reference/html5/#test-mockmvc-setup
+    // https://www.baeldung.com/spring-boot-testing
 
     @Autowired
     private WebApplicationContext context;
@@ -38,10 +39,3 @@ public class CFSecurityTests {
                 .build();
     }
 }
-//    @Test
-//    public void shouldReturnDefaultMessage() throws Exception {
-//        this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-//                .andExpect(content().string(containsString("Hello, World")));
-//    }
-//
-//}
