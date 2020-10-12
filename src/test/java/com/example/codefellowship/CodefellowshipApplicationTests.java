@@ -10,6 +10,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
+// https://stackoverflow.com/questions/15203485/spring-test-security-how-to-mock-authentication TODO: seems a good walk thru for straightforward user testing. Maybe for later in the week.
 
 // https://spring.io/guides/gs/testing-web/
 // ^^ only tests
@@ -39,8 +40,4 @@ public class CodefellowshipApplicationTests { // the public modifier is not nece
 														.contains("username");
 	}
 
-	@Test void userLoad() {
-		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/user", String.class))
-				.contains("Follow!");
-	}
 }
