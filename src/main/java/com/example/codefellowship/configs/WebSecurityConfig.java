@@ -50,4 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout(); // this then creates a built-in default logout route at /logout.
     }
+
+
 }
